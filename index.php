@@ -6,10 +6,18 @@
   </head>
   <body>
 
-<script type="text/javascript" src="js/ajax.js"></script>
-<script type="text/javascript" src="js/teclado.js"></script>
-<script type="text/javascript" src="js/buclePrincipal.js"></script>
-<script type="text/javascript" src="js/dimensiones.js"></script>
-<script type="text/javascript" src="js/inicio.js"></script>
+<div id="juego">
+<div id="mapa">
+
+</div>
+<div id="jugador">
+
+</div>
+</div>
+<?php
+
+include_once "app/cargadorArchivosJS.php";
+
+?>
 </body>
 </html>

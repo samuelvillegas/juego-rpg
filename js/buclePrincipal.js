@@ -13,7 +13,7 @@ var buclePrincipal = {
     buclePrincipal.actualizar(registroTemporal);
     buclePrincipal.dibujar();
 
-    
+
 
     if(registroTemporal - buclePrincipal.ultimoRegistro > 999){
       buclePrincipal.ultimoRegistro = registroTemporal;
@@ -26,11 +26,12 @@ var buclePrincipal = {
 
   },
   actualizar: function(registroTemporal) {
-    teclado.reiniciar();
+    //mando.actualizar();
+    maquinaEstados.actuaizar(registroTemporal);
     buclePrincipal.aps++;
-
   },
   dibujar: function(registroTemporal){
+    maquinaEstados.dibujar();
     buclePrincipal.fps++;
   }
 }
