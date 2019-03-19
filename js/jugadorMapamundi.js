@@ -1,8 +1,8 @@
 function JugadorMapamundi(posicionInicialEnPixeles){
-  this.ancho = 48; //tamao de los sprites
-  this.alto = 48;
+  this.ancho = 16; //tamaño de los sprites
+  this.alto = 32;
 
-  this.velocidadMovimiento = 1;
+  this.velocidadMovimiento = 10;
 
   var centroX = dimensiones.ancho / 2 - this.ancho / 2;
   var centroY = dimensiones.alto / 2 - this.alto / 2;
@@ -17,7 +17,7 @@ function JugadorMapamundi(posicionInicialEnPixeles){
 JugadorMapamundi.prototype.aplicarEstilos = function () {
   var idHTML = "jugador";
 
-  document.getElementById(idHTML).style.background = "white";
+  document.getElementById(idHTML).style.background = "blue";
   document.getElementById(idHTML).style.position = "absolute";
   document.getElementById(idHTML).style.width = this.ancho + "px";
   document.getElementById(idHTML).style.height = this.alto + "px";

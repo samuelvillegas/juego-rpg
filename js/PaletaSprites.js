@@ -16,13 +16,14 @@ function PaletaSprites(datosSprites){
 
   this.sprites = []
 
-  for(s = 0; s < this.totalSprites; s++){
+  for(let s = 0; s < this.totalSprites; s++){
     let idActual = this.primerSprite - 1 + s;
     this.sprites.push(new Sprite(this.rutaImagen, idActual, this.obtenerPosicionDesdeIdSprite(idActual)));
   }
 }
 
 PaletaSprites.prototype.obtenerPosicionDesdeIdSprite = function (idSprite) {
+
   var y = Math.floor(idSprite / this.anchoImagenEnSprites);
   var x = idSprite % this.anchoImagenEnSprites;
 

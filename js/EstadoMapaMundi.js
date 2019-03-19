@@ -3,7 +3,8 @@ function EstadoMapaMundi(){
   this.mapaListo = false;
   this.mapa = null;
   this.jugadorMapamundi = null;
-  ajax.cargarArchivo("mapas/mapa.json", function(objetoJSON){
+  ajax.cargarArchivo("mapas/arkanos.json", function(objetoJSON){
+
     that.mapa = new Mapa(objetoJSON);
 
     that.mapaListo = true;
@@ -13,7 +14,7 @@ function EstadoMapaMundi(){
 
 }
 
-EstadoMapaMundi.prototype.actualizar = function () {
+EstadoMapaMundi.prototype.actualizar = function (registroTemporal) {
   if(!this.mapaListo){
     return;
   }
@@ -22,5 +23,8 @@ EstadoMapaMundi.prototype.actualizar = function () {
 };
 
 EstadoMapaMundi.prototype.dibujar = function () {
-
+if(!this.mapaListo){
+  return;
+}
+this.mapa.dibujar();
 };
