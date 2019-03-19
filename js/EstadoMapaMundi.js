@@ -3,7 +3,7 @@ function EstadoMapaMundi(){
   this.mapaListo = false;
   this.mapa = null;
   this.jugadorMapamundi = null;
-  ajax.cargarArchivo("mapas/desierto48.json", function(objetoJSON){
+  ajax.cargarArchivo("mapas/mapa.json", function(objetoJSON){
     that.mapa = new Mapa(objetoJSON);
 
     that.mapaListo = true;

@@ -4,7 +4,7 @@ var inicio = {
     
     maquinaEstados.iniciar(),
     teclado.iniciar(),
-    mando.inicir(),
+    //mando.iniciar(),
     buclePrincipal.iterar()
   ],
   iniciarJuego: function () {

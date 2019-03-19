@@ -9,16 +9,16 @@ var maquinaEstados = {
 
         break;
         case listadoEstados.MAPAMUNDI:
-          maquinaEstados.estadoActual = new EstadoMapamundi(listadoEstados.MAPAMUNDI)
+          maquinaEstados.estadoActual = new EstadoMapaMundi(listadoEstados.MAPAMUNDI);
           break;
 
     }
   },
-  actualizar: function () {
+  actualizar: function (registroTemporal) {
     maquinaEstados.estadoActual.actualizar(registroTemporal);
 
   },
   dibujar: function() {
     maquinaEstados.estadoActual.dibujar();
   }
-}
+};

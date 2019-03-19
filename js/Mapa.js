@@ -1,6 +1,6 @@
 function Mapa(objetoJSON){
   this.posicion = new Punto(0,0);
-  this.posicionActualizada new Punto(0,0);
+  this.posicionActualizada = new Punto(0,0);
 
   this.anchoEnTiles = parseInt(objetoJSON.width);
   this.altoEnTiles = parseInt(objetoJSON.height);

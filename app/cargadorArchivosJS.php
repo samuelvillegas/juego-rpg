@@ -14,7 +14,7 @@ $fuentes = [
   "js/listadoEstados.js",
   "js/ajax.js",
   "js/EstadoMapamundi.js",
-  "js/maquinaEstados.js",,
+  "js/maquinaEstados.js",
   "js/Punto.js",
   "js/Mapa.js",
   "js/controlesTeclado.js",
@@ -24,5 +24,5 @@ $fuentes = [
 ];
 
 foreach ($fuentes as $fuente) {
-  printf('<script type="text/javascript" src="%s?%s"></script>', $fuente, $fecha->getTimestap());
+  printf('<script type="text/javascript" src="%s?%s"></script>', $fuente, $fecha->getTimestamp());
 }

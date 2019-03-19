@@ -1,6 +1,6 @@
 function Rectangulo(x, y, ancho, alto){
   this.x = x;
-  this.y = ;
+  this.y = y;
   this.ancho = ancho;
   this.alto = alto;
   // this.id = x + "r" + y;

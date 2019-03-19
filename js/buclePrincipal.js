@@ -27,7 +27,7 @@ var buclePrincipal = {
   },
   actualizar: function(registroTemporal) {
     //mando.actualizar();
-    maquinaEstados.actuaizar(registroTemporal);
+    maquinaEstados.actualizar(registroTemporal);
     buclePrincipal.aps++;
   },
   dibujar: function(registroTemporal){

@@ -8,13 +8,14 @@ function CapaMapaTiles(datosCapa, indiceZ, anchoDeLosTiles, altoDeLosTiles, pale
       this.z = indiceZ;
       this.tiles = [];
 
-      for(y = 0; < this.altoEnTiles; y++){
+      for(y = 0; y < this.altoEnTiles; y++){
         for(x = 0; x < this.anchoEnTiles; x++){
           let idSpriteActualSobreUno =  datosCapa.data[x + y * this.anchoEnTiles];
           if(idSpriteActualSobreUno == 0){
             this.tiles.push(null);
           }else{
-            let spriteActual = this.encontrarSpriteEnPaletaPorId(idSpriteActualSobreUno - 1, paletasSprites);
+              console.log(idSpriteActualSobreUno + " " + paletasSprites)
+            var spriteActual = this.encontrarSpriteEnPaletaPorId(idSpriteActualSobreUno, paletasSprites);
 
             this.tiles.push(new Tile(x, y, indiceZ, anchoDeLosTiles, spriteActual));
           }
@@ -24,10 +25,13 @@ function CapaMapaTiles(datosCapa, indiceZ, anchoDeLosTiles, altoDeLosTiles, pale
 }
 
 CapaMapaTiles.prototype.encontrarSpriteEnPaletaPorId = function (idSprite, paletasSprites) {
-  for(s = 0; s < paletasSprites.length; s++){
+
+  for(let s = 0; s < paletasSprites.length; s++){
+
     if(idSprite >= paletasSprites[s].primerSprite - 1 &&
       idSprite < paletasSprites[s].totalSprites + paletasSprites[s].primerSprite + 1){
-        return paletasSprites[s].sprite[Math.abs.(paletasSprites[s].primerSprite - 1 - idSprite)]
+
+        return paletasSprites[s].sprite[Math.abs(paletasSprites[s].primerSprite - 1 - idSprite)]
     }
   }
   throw("El Id no existe " + idSprite);
