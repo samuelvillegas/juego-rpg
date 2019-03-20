@@ -1,11 +1,16 @@
 function JugadorMapamundi(posicionInicialEnPixeles){
-    this.ancho = 16; //tamaño de los sprites
-    this.alto = 32;
+    this.ancho = 48; //tamaño de los sprites
+    this.alto = 48;
 
     this.velocidadMovimiento = 5;
 
     var centroX = Math.trunc(dimensiones.ancho / 2 - this.ancho / 2);
     var centroY = Math.trunc(dimensiones.alto / 2 - this.alto / 2);
+
+    this.limiteArriba = new Rectangulo(centroX, centroY - 4, this.ancho, 1);
+    this.limiteAbajo = new Rectangulo(centroX, centroY + this.alto - 1 + 5, this.ancho, 1);
+    this.limiteIzquierda = new Rectangulo(centroX - 4, centroY, 1, this.alto);
+    this.limiteDerecha = new Rectangulo(centroX + this.ancho - 1 + 5, centroY, 1, this.alto);
 
     this.posicionCentrada = new Punto(centroX, centroY);
 
@@ -29,20 +34,24 @@ JugadorMapamundi.prototype.aplicarEstilos = function () {
     document.getElementById(idHTML).style.top = this.posicionCentrada.y + "px";
 };
 
-JugadorMapamundi.prototype.actualizar = function (registroTemporal) {
-    if(teclado.teclaPulsada(controlesTeclado.arriba)){
+JugadorMapamundi.prototype.actualizar = function (registroTemporal, mapa) {
+    if(teclado.teclaPulsada(controlesTeclado.arriba) &&
+    this.limiteArriba.cruza(mapa.limiteMapa)){
         this.posicionEnMapaEnPixeles.y += this.velocidadMovimiento;
     }
 
-    if(teclado.teclaPulsada(controlesTeclado.abajo)){
+    if(teclado.teclaPulsada(controlesTeclado.abajo)&&
+    this.limiteAbajo.cruza(mapa.limiteMapa)){
         this.posicionEnMapaEnPixeles.y -= this.velocidadMovimiento;
     }
 
-    if(teclado.teclaPulsada(controlesTeclado.izquierda)){
+    if(teclado.teclaPulsada(controlesTeclado.izquierda)&&
+    this.limiteIzquierda.cruza(mapa.limiteMapa)){
         this.posicionEnMapaEnPixeles.x += this.velocidadMovimiento;
     }
 
-    if(teclado.teclaPulsada(controlesTeclado.derecha)){
+    if(teclado.teclaPulsada(controlesTeclado.derecha)&&
+    this.limiteDerecha.cruza(mapa.limiteMapa)){
         this.posicionEnMapaEnPixeles.x -= this.velocidadMovimiento;
     }
 };

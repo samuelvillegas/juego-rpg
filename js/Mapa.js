@@ -13,6 +13,11 @@ function Mapa(objetoJSON){
     this.iniciarCapas(objetoJSON.layers);
 
     this.iniciarRejilla();
+
+    this.limiteMapa = new Rectangulo(this.posicion.x,
+        this.posicion.y,
+        this.anchoEnTiles * this.anchoDeLosTiles,
+        this.altoEnTiles * this.altoDeLosTiles)
 }
 
 Mapa.prototype.iniciarPalestasSprites = function (datosCapas) {
@@ -74,6 +79,9 @@ Mapa.prototype.iniciarRejilla = function(){
 Mapa.prototype.actualizar = function (registroTemporal, posicionJugadorMapaEnPixeles) {
     this.posicion.x = posicionJugadorMapaEnPixeles.x;
     this.posicion.y = posicionJugadorMapaEnPixeles.y;
+
+    this.limiteMapa.x = this.posicion.x;
+    this.limiteMapa.y = this.posicion.y;
 };
 
 Mapa.prototype.dibujar = function () {
