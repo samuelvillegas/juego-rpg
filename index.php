@@ -7,12 +7,9 @@
   <body>
 
 <div id="juego">
-<div id="mapa">
-
-</div>
-<div id="jugador">
-
-</div>
+<div id="mapa"></div>
+<div id="jugador"></div>
+<div id="colisiones"></div>
 </div>
 <?php
 
