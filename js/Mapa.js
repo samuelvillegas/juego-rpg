@@ -7,6 +7,8 @@ function Mapa(objetoJSON){
     this.anchoDeLosTiles = parseInt(objetoJSON.tilewidth);
     this.altoDeLosTiles = parseInt(objetoJSON.tileheight);
 
+    this.retangulosColisiones = [];
+
     this.paletasSprites = [];
     this.iniciarPalestasSprites(objetoJSON.tilesets);
     this.capasTiles = [];
@@ -35,6 +37,23 @@ Mapa.prototype.iniciarCapas = function (datosCapas) {
                     datosCapas[i], i, this.anchoDeLosTiles, this.altoDeLosTiles, this.paletasSprites));
                 break;
             case "objectgroup":
+
+                if(datosCapas[i].name == "colisiones"){
+                    for(let c = 0; c < datosCapas[i].objects.length; c++) {
+                        this.retangulosColisiones.push(new Rectangulo(
+                            datosCapas[i].objects[c].x,
+                            datosCapas[i].objects[c].y,
+                            datosCapas[i].objects[c].width,
+                            datosCapas[i].objects[c].height
+                        ))
+                        
+                        
+                    }
+                }
+                if(datosCapas[i].name == "localizaciones"){
+
+                }
+
                 break;
 
         }
@@ -61,6 +80,15 @@ Mapa.prototype.iniciarRejilla = function(){
 
     document.getElementById("mapa").innerHTML = html;
 
+    var htmlColisiones = "";
+
+    for(let c = 0; c < this.retangulosColisiones.length; c++){
+
+        htmlColisiones += this.retangulosColisiones[c].html;
+    }
+
+    document.getElementById("colisiones").innerHTML = htmlColisiones;
+
     for(ct = 0; ct < this.capasTiles.length; ct++){
         for(t = 0; t < this.capasTiles[ct].tiles.length; t++){
             if(this.capasTiles[ct].tiles[t] == null){
@@ -72,6 +100,11 @@ Mapa.prototype.iniciarRejilla = function(){
 
         }
     }
+
+    for(let c = 0; c < this.retangulosColisiones.length; c++){
+        this.retangulosColisiones[c].aplicarEstilos();
+    }
+
 
     document.getElementsByTagName("body")[0].style.overflow = "hidden";
 }
@@ -90,5 +123,9 @@ Mapa.prototype.dibujar = function () {
         for(let i = 0; i < this.capasTiles[c].tiles.length; i++ ){
             this.capasTiles[c].tiles[i].mover(this.posicion.x, this.posicion.y);
         }
+    }
+
+    for(let rc = 0; rc < this.retangulosColisiones.length; rc++){
+        this.retangulosColisiones[rc].mover(this.posicion.x, this.posicion.y);
     }
 };
