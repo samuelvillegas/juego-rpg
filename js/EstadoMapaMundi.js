@@ -15,7 +15,7 @@ function EstadoMapaMundi(){
 }
 
 EstadoMapaMundi.prototype.actualizar = function (registroTemporal) {
-    if(!this.mapaListo){
+    if(!this.mapaListo || this.mapa == null || this.jugadorMapamundi == null){
         return;
     }
     this.jugadorMapamundi.actualizar(registroTemporal, this.mapa);

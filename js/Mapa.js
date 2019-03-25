@@ -101,9 +101,9 @@ Mapa.prototype.iniciarRejilla = function(){
         }
     }
 
-    for(let c = 0; c < this.retangulosColisiones.length; c++){
+    /*for(let c = 0; c < this.retangulosColisiones.length; c++){
         this.retangulosColisiones[c].aplicarEstilos();
-    }
+    }*/
 
 
     document.getElementsByTagName("body")[0].style.overflow = "hidden";
@@ -125,7 +125,7 @@ Mapa.prototype.dibujar = function () {
         }
     }
 
-    for(let rc = 0; rc < this.retangulosColisiones.length; rc++){
+    /*for(let rc = 0; rc < this.retangulosColisiones.length; rc++){
         this.retangulosColisiones[rc].mover(this.posicion.x, this.posicion.y);
-    }
+    }*/
 };

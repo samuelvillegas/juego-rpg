@@ -35,23 +35,73 @@ JugadorMapamundi.prototype.aplicarEstilos = function () {
 };
 
 JugadorMapamundi.prototype.actualizar = function (registroTemporal, mapa) {
-    if(teclado.teclaPulsada(controlesTeclado.arriba) &&
-    this.limiteArriba.cruza(mapa.limiteMapa)){
+    this.comprobarColisiones(mapa)
+};
+
+
+JugadorMapamundi.prototype.comprobarColisiones = function(mapa){
+    var colisionArriba = false;
+    var colisionAbajo = false;
+    var colisionIzquierda = false;
+    var colisionDerecha = false;
+
+    if(!this.limiteArriba.cruza(mapa.limiteMapa)){
+        colisionArriba = true;
+    }
+
+    if(!this.limiteAbajo.cruza(mapa.limiteMapa)){
+        colisionAbajo = true;
+    }
+
+    if(!this.limiteIzquierda.cruza(mapa.limiteMapa)){
+        colisionIzquierda = true;
+    }
+
+    if(!this.limiteDerecha.cruza(mapa.limiteMapa)){
+        colisionDerecha = true;
+    }
+
+    for(let i = 0; i < mapa.retangulosColisiones.length; i++){
+
+        let traduccionTemporalColisiones = new Rectangulo(
+            mapa.retangulosColisiones[i].x + mapa.posicion.x,
+            mapa.retangulosColisiones[i].y + mapa.posicion.y,
+            mapa.retangulosColisiones[i].ancho,
+            mapa.retangulosColisiones[i].alto,
+        )
+
+        if(this.limiteArriba.cruza(traduccionTemporalColisiones)){
+            colisionArriba = true;
+        }
+
+        if(this.limiteAbajo.cruza(traduccionTemporalColisiones)){
+            colisionAbajo = true;
+        }
+
+        if(this.limiteIzquierda.cruza(traduccionTemporalColisiones)){
+            colisionIzquierda = true;
+        }
+
+        if(this.limiteDerecha.cruza(traduccionTemporalColisiones)){
+            colisionDerecha = true;
+        }
+
+    }
+
+    if(!colisionArriba && teclado.teclaPulsada(controlesTeclado.arriba)){
         this.posicionEnMapaEnPixeles.y += this.velocidadMovimiento;
     }
 
-    if(teclado.teclaPulsada(controlesTeclado.abajo)&&
-    this.limiteAbajo.cruza(mapa.limiteMapa)){
-        this.posicionEnMapaEnPixeles.y -= this.velocidadMovimiento;
+    if(!colisionAbajo && teclado.teclaPulsada(controlesTeclado.abajo)){
+       this.posicionEnMapaEnPixeles.y -= this.velocidadMovimiento;
     }
 
-    if(teclado.teclaPulsada(controlesTeclado.izquierda)&&
-    this.limiteIzquierda.cruza(mapa.limiteMapa)){
-        this.posicionEnMapaEnPixeles.x += this.velocidadMovimiento;
+    if(!colisionIzquierda && teclado.teclaPulsada(controlesTeclado.izquierda)){
+       this.posicionEnMapaEnPixeles.x += this.velocidadMovimiento;
     }
 
-    if(teclado.teclaPulsada(controlesTeclado.derecha)&&
-    this.limiteDerecha.cruza(mapa.limiteMapa)){
-        this.posicionEnMapaEnPixeles.x -= this.velocidadMovimiento;
+    if(!colisionDerecha && teclado.teclaPulsada(controlesTeclado.derecha)){
+       this.posicionEnMapaEnPixeles.x -= this.velocidadMovimiento;
     }
+
 };
